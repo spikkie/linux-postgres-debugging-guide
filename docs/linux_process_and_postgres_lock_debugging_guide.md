@@ -106,7 +106,7 @@ A blocked app often reflects a lock wait on the DB side.
 ## 3.2 Inspect PostgreSQL directly
 
 ```bash
-docker run --rm --network host -e PGPASSWORD=devpass postgres:16   psql -h 127.0.0.1 -p 5444 -U candlecast -d candlecast -c "
+docker run --rm --network host -e PGPASSWORD=devpass postgres:16   psql -h 127.0.0.1 -p 5432 -U candlecast -d candlecast -c "
   select pid, usename, state, wait_event_type, wait_event,
          xact_start, query_start, left(query, 180) as query
   from pg_stat_activity
@@ -130,7 +130,7 @@ Most development hangs around `TRUNCATE`, `ALTER TABLE`, `DROP TABLE`, migration
 ## 4.1 Quick lock view
 
 ```bash
-docker run --rm --network host -e PGPASSWORD=devpass postgres:16   psql -h 127.0.0.1 -p 5444 -U candlecast -d candlecast -c "
+docker run --rm --network host -e PGPASSWORD=devpass postgres:16   psql -h 127.0.0.1 -p 5432 -U candlecast -d candlecast -c "
   select a.pid,
          a.state,
          a.wait_event_type,
@@ -150,7 +150,7 @@ docker run --rm --network host -e PGPASSWORD=devpass postgres:16   psql -h 127.0
 ## 4.2 Blocked vs blocking sessions
 
 ```bash
-docker run --rm --network host -e PGPASSWORD=devpass postgres:16   psql -h 127.0.0.1 -p 5444 -U candlecast -d candlecast -c "
+docker run --rm --network host -e PGPASSWORD=devpass postgres:16   psql -h 127.0.0.1 -p 5432 -U candlecast -d candlecast -c "
 with blocked as (
   select a.pid, a.query, a.state, a.wait_event_type, a.wait_event
   from pg_stat_activity a
@@ -255,7 +255,7 @@ ps -T -p "$PID" -o pid,spid,stat,wchan:24,comm || true
 set -euo pipefail
 
 DB_HOST="${DB_HOST:-127.0.0.1}"
-DB_PORT="${DB_PORT:-5444}"
+DB_PORT="${DB_PORT:-5432}"
 DB_USER="${DB_USER:-candlecast}"
 DB_NAME="${DB_NAME:-candlecast}"
 DB_PASSWORD="${DB_PASSWORD:-devpass}"
@@ -275,7 +275,7 @@ docker run --rm --network host -e PGPASSWORD="$DB_PASSWORD" postgres:16   psql -
 set -euo pipefail
 
 DB_HOST="${DB_HOST:-127.0.0.1}"
-DB_PORT="${DB_PORT:-5444}"
+DB_PORT="${DB_PORT:-5432}"
 DB_USER="${DB_USER:-candlecast}"
 DB_NAME="${DB_NAME:-candlecast}"
 DB_PASSWORD="${DB_PASSWORD:-devpass}"
@@ -326,7 +326,7 @@ order by p.blocked_pid;"
 set -euo pipefail
 
 DB_HOST="${DB_HOST:-127.0.0.1}"
-DB_PORT="${DB_PORT:-5444}"
+DB_PORT="${DB_PORT:-5432}"
 DB_USER="${DB_USER:-candlecast}"
 DB_NAME="${DB_NAME:-candlecast}"
 DB_PASSWORD="${DB_PASSWORD:-devpass}"
