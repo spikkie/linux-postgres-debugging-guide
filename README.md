@@ -5,6 +5,7 @@ A practical GitHub-ready lab for debugging Linux processes and PostgreSQL lockin
 ## Included
 
 - `docs/linux_process_and_postgres_lock_debugging_guide_v2.docx`
+- `docs/linux_process_and_postgres_lock_debugging_guide.md`
 - `scripts/create_debug_lab_docker.sh`
 - `scripts/run_postgres_debug_cases.sh`
 
