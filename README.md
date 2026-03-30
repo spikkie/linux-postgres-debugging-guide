@@ -105,7 +105,7 @@ This often solves the “looks hung” problem faster than debugging the wrapper
 
 ```bash
 docker run --rm --network host -e PGPASSWORD=devpass postgres:16 \
-  psql -h 127.0.0.1 -p 5444 -U candlecast -d candlecast -c "
+  psql -h 127.0.0.1 -p 5432 -U candlecast -d candlecast -c "
   select pid, usename, state, wait_event_type, wait_event,
          xact_start, query_start, left(query, 180) as query
   from pg_stat_activity
@@ -127,7 +127,7 @@ Most important states:
 
 ```bash
 docker run --rm --network host -e PGPASSWORD=devpass postgres:16 \
-  psql -h 127.0.0.1 -p 5444 -U candlecast -d candlecast -c "
+  psql -h 127.0.0.1 -p 5432 -U candlecast -d candlecast -c "
   select a.pid,
          a.state,
          a.wait_event_type,
@@ -150,7 +150,7 @@ Use this when `TRUNCATE`, `ALTER TABLE`, `DROP TABLE`, or fixture cleanup appear
 
 ```bash
 docker run --rm --network host -e PGPASSWORD=devpass postgres:16 \
-  psql -h 127.0.0.1 -p 5444 -U candlecast -d candlecast -c "
+  psql -h 127.0.0.1 -p 5432 -U candlecast -d candlecast -c "
 with blocked as (
   select a.pid, a.query, a.state, a.wait_event_type, a.wait_event
   from pg_stat_activity a
@@ -201,7 +201,7 @@ This is the highest-value Postgres query when you need to answer:
 
 ```bash
 docker run --rm --network host -e PGPASSWORD=devpass postgres:16 \
-  psql -h 127.0.0.1 -p 5444 -U candlecast -d candlecast -c "
+  psql -h 127.0.0.1 -p 5432 -U candlecast -d candlecast -c "
 select pg_terminate_backend(pid)
 from pg_stat_activity
 where datname = 'candlecast'

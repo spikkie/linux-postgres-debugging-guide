@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-POSTGRES_PORT="${POSTGRES_PORT:-5444}"
+POSTGRES_PORT="${POSTGRES_PORT:-5432}"
 POSTGRES_USER="${POSTGRES_USER:-candlecast}"
 POSTGRES_PASSWORD="${POSTGRES_PASSWORD:-devpass}"
 POSTGRES_DB="${POSTGRES_DB:-candlecast}"
