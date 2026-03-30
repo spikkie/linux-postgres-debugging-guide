@@ -2,7 +2,7 @@
 set -euo pipefail
 
 DB_HOST="${DB_HOST:-127.0.0.1}"
-DB_PORT="${DB_PORT:-5432}"
+DB_PORT="${DB_PORT:-5444}"
 DB_USER="${DB_USER:-candlecast}"
 DB_NAME="${DB_NAME:-candlecast}"
 DB_PASSWORD="${DB_PASSWORD:-devpass}"

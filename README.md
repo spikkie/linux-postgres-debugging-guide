@@ -8,6 +8,21 @@ A practical GitHub-ready lab for debugging Linux processes and PostgreSQL lockin
 - `docs/linux_process_and_postgres_lock_debugging_guide.md`
 - `scripts/create_debug_lab_docker.sh`
 - `scripts/run_postgres_debug_cases.sh`
+- `scripts/run_postgres_debug_cases.sh` (optional non-interactive variant)
+
+## Scope
+
+This lab focuses on:
+
+- Linux process hangs
+- parent/child wait relationships
+- `strace`-based triage
+- PostgreSQL session activity
+- PostgreSQL locks and blockers
+- `idle in transaction` failures
+- blocked `TRUNCATE` and fail-fast `lock_timeout`
+
+
 
 ## Quick start
 
@@ -15,6 +30,7 @@ A practical GitHub-ready lab for debugging Linux processes and PostgreSQL lockin
 chmod +x scripts/*.sh
 ./scripts/create_debug_lab_docker.sh up
 ./scripts/run_postgres_debug_cases.sh
+./scripts/run_postgres_debug_cases_interactive.sh
 ```
 
 ## Safety note
