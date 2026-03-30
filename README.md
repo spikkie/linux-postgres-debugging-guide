@@ -4,10 +4,10 @@ A practical GitHub-ready lab for debugging Linux processes and PostgreSQL lockin
 
 ## Included
 
-- `docs/linux_process_and_postgres_lock_debugging_guide_v2.docx`
 - `docs/linux_process_and_postgres_lock_debugging_guide.md`
+- `docs/linux_process_and_postgres_lock_debugging_guide_v2.docx`
 - `scripts/create_debug_lab_docker.sh`
-- `scripts/run_postgres_debug_cases.sh`
+- `scripts/run_postgres_debug_cases_interactive.sh`
 - `scripts/run_postgres_debug_cases.sh` (optional non-interactive variant)
 
 ## Scope
@@ -224,4 +224,22 @@ When something looks hung, use this sequence:
 7. terminate stale sessions only if safe in local development
 
 
+```
 
+## Safety note
+
+Scripts that terminate DB sessions should only be used on local or disposable environments.
+
+## Utility script
+
+To create a clean zip of the repository without the `.git` directory, use:
+
+```bash
+./scripts/zip_repo_except_git.sh .
+```
+
+Or specify both source and output:
+
+```bash
+./scripts/zip_repo_except_git.sh . /tmp/my-repo.zip
+```
